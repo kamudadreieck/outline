@@ -18,7 +18,7 @@ const s3 = new AWS.S3({
   region: AWS_REGION,
   endpoint: (process.env.AWS_S3_UPLOAD_BUCKET_URL.includes(
     AWS_S3_UPLOAD_BUCKET_NAME
-  ) && !AWS_S3_FORCE_PATH_STYLE)
+  ) && AWS_S3_FORCE_PATH_STYLE)
     ? undefined
     : new AWS.Endpoint(process.env.AWS_S3_UPLOAD_BUCKET_URL),
   signatureVersion: "v4",
