@@ -16,9 +16,9 @@ const s3 = new AWS.S3({
   accessKeyId: AWS_ACCESS_KEY_ID,
   secretAccessKey: AWS_SECRET_ACCESS_KEY,
   region: AWS_REGION,
-  endpoint: process.env.AWS_S3_UPLOAD_BUCKET_URL.includes(
+  endpoint: (process.env.AWS_S3_UPLOAD_BUCKET_URL.includes(
     AWS_S3_UPLOAD_BUCKET_NAME
-  )
+  ) && !AWS_S3_FORCE_PATH_STYLE)
     ? undefined
     : new AWS.Endpoint(process.env.AWS_S3_UPLOAD_BUCKET_URL),
   signatureVersion: "v4",
