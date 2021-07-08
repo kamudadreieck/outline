@@ -20,7 +20,10 @@ const s3 = new AWS.S3({
     AWS_S3_UPLOAD_BUCKET_NAME
   ) && AWS_S3_FORCE_PATH_STYLE)
     ? undefined
-    : new AWS.Endpoint(process.env.AWS_S3_UPLOAD_BUCKET_URL),
+    : new AWS.Endpoint(process.env.AWS_S3_UPLOAD_BUCKET_URL.replace(
+      AWS_S3_UPLOAD_BUCKET_NAME + '.',
+      "",
+    )),
   signatureVersion: "v4",
 });
 
